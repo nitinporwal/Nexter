@@ -1,6 +1,10 @@
 .header {
   background-color: $color-grey-dark-1;
   grid-column: full-start/col-end 6;
+
+  @media screen and (max-width: $bp-medium) {
+    grid-column: full-start/full-end;
+  }
   background-image: linear-gradient(
       rgba($color-secondary, 0.93),
       rgba($color-secondary, 0.93)
@@ -10,12 +14,16 @@
   background-position: center;
 
   display: grid;
-  grid-template-columns: max-content;
-  grid-template-rows: 1fr min-content 6rem 1fr;
+  grid-template-columns: minmax(min-content, max-content);
+  grid-template-rows: 1fr min-content minmax(6rem, min-content) 1fr;
   row-gap: 1.5rem;
   padding: 8rem;
   padding-top: 4rem;
   justify-content: center;
+
+  @media screen and (max-width: $bp-small) {
+    padding: 5rem;
+  }
 
   &__logo {
     height: 3rem;
@@ -49,8 +57,10 @@
     grid-template-columns: repeat(4, 1fr);
     column-gap: 3rem;
     justify-items: center;
+    align-items: center;
     img {
-      height: 2.5rem;
+      max-height: 2.5rem;
+      max-width: 100%;
       filter: brightness(70%);
     }
   }
